@@ -1,6 +1,8 @@
+import '../auth/auth_util.dart';
 import '../flutter_flow/flutter_flow_static_map.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
+import '../login_page/login_page_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:latlong/latlong.dart';
@@ -29,7 +31,28 @@ class _HomePageWidgetState extends State<HomePageWidget> {
             fontFamily: 'Poppins',
           ),
         ),
-        actions: [],
+        actions: [
+          Padding(
+            padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+            child: InkWell(
+              onTap: () async {
+                await signOut();
+                await Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => LoginPageWidget(),
+                  ),
+                  (r) => false,
+                );
+              },
+              child: Icon(
+                Icons.settings_outlined,
+                color: Colors.black,
+                size: 35,
+              ),
+            ),
+          )
+        ],
         centerTitle: true,
         elevation: 4,
       ),
